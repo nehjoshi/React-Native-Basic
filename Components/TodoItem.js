@@ -12,7 +12,7 @@ export default function TodoItem({item, deleteChore}) {
 const styles = StyleSheet.create({
     text: {
         padding: 16,
-        marginTop: 16,
+        marginVertical: 10,
         borderColor: '#0081fa',
         borderWidth: 1,
         borderRadius: 10,

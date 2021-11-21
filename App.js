@@ -1,5 +1,7 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import AddItem from './Components/AddItem';
 import Navbar from './Components/Navbar';
 import TodoItem from './Components/TodoItem';
 
@@ -11,6 +13,12 @@ export default function App() {
     { title: "Cooking", id: 3},
   ]);
 
+  const AddChore = (chore) => {
+    setChores(chores => {
+      return [...chores, chore];
+    });
+  }
+
   const DeleteChore = (id) => {
     setChores(prev => {
       return prev.filter(chore => chore.id != id);
@@ -20,6 +28,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Navbar />
+      <AddItem addChore={AddChore } />
       <View style={styles.content}>
         <View style={styles.list}>
           <FlatList 
@@ -30,7 +39,6 @@ export default function App() {
           )}/>
         </View>
       </View>
-
       
     </View>
   );
@@ -44,7 +52,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
-    marginTop: '13%',
   },
   list: {
     marginTop: 20,

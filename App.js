@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -20,24 +20,25 @@ export default function App() {
     { name: "Love", age: "22", id: 14 },
     { name: "Theo", age: "23", id: 15 },
   ]);
+  const pressHandler = (id) => { 
+    setPeople(prev => {   //How cool is this function!
+      return prev.filter(person => person.id !== id);
+    })
+  }
+
   return (
+
     <View style={styles.container}>
-      <FlatList   //Flatlist is more efficient than 
+      <FlatList   //Flatlist is more efficient than normal .map() functions
         keyExtractor={(item) => item.id}
         numColumns={3}
         data={people}
         renderItem={({ item }) => (
-          <Text style={styles.text}>{item.name} : {item.age}</Text>
+          <TouchableOpacity onPress={(() => pressHandler(item.id))}>
+            <Text style={styles.text}>{item.name} : {item.age}</Text>
+          </TouchableOpacity>
         )}
       />
-      {/* <ScrollView>
-          {people.map(item => (
-              <View key={item.id}>
-                <Text style={styles.text}>{item.name} : {item.age}</Text>
-              </View>
-            )
-          )}
-        </ScrollView> */}
       <StatusBar style="auto" />
     </View>
   );

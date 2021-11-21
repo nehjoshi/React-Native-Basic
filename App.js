@@ -1,11 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('');
+  const [ready, setReady] = useState(false);
+  const handleSubmit = () => {
+    alert(`Hello ${name}`);
+    setReady(true);
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Open up App.js to start working on your app!</Text>
+        <Text style={styles.headerText}>
+          Enter your name:
+        </Text>
+        <TextInput onChangeText={(text) => setName(text)} style={styles.input} />
+        <Button title="Submit" onPress={handleSubmit} />
+        {ready && <Text style={styles.headerText}>Hello {name}</Text>}
       <StatusBar style="auto" />
     </View>
   );
@@ -13,15 +24,23 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#00b4cc',
-    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  text: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
+  input: {
+    height: 40,
+    width: '80%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+  },
+  headerText: {
+    fontSize: 30,
+    color: 'gray',
   }
 });

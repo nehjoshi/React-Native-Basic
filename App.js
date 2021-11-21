@@ -22,7 +22,8 @@ export default function App() {
   const DeleteChore = (id) => {
     setChores(prev => {
       return prev.filter(chore => chore.id != id);
-    })
+    });
+    alert("Deleted Item Successfully!");
   }
 
   return (

@@ -5,8 +5,15 @@ export default function AddItem({addChore}) {
     const [text, setText] = useState("");
 
     const handleSubmit = () => {
+
+        if(text.length === 0) {
+            alert("Item can't be empty!");
+            return null;
+        }
+
         const chore = {title: text, id: Math.random()};
         addChore(chore);
+        alert("Item added successfully!");
     }
 
     return (

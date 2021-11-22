@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, Button, TextInput, View } from 'react-native';
+import { StyleSheet, Text, Button, TextInput, View, Alert } from 'react-native';
 
 export default function AddItem({addChore}) {
     const [text, setText] = useState("");
@@ -13,7 +13,9 @@ export default function AddItem({addChore}) {
 
         const chore = {title: text, id: Math.random()};
         addChore(chore);
-        alert("Item added successfully!");
+        Alert.alert("Success", "Item added successfully!", [
+            {text: "OK", onPress: () => console.log("Ok")}
+        ]);
     }
 
     return (

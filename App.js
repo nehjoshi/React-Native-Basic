@@ -1,8 +1,7 @@
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
+import Navigator from './routes/HomeStack';
 import React, { useState, useEffect } from 'react';
-import Home from './screens/Home';
-
 
 export default function App() {
 
@@ -16,7 +15,7 @@ export default function App() {
   }
   return (
     <>
-    <Home />
+    <Navigator />
     </>
   );
 }

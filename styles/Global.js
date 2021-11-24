@@ -7,6 +7,13 @@ export const GlobalStyles = StyleSheet.create({
     },  
     headerText: {
         fontFamily: "LatoBold",
+        marginBottom: 10,
         fontSize: 40,
+    },
+    text: {
+        fontFamily: "Lato",
+        fontSize: 16,
+        marginBottom: 10,
+        lineHeight: 20,
     }
 });

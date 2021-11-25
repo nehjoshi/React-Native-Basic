@@ -1,18 +1,22 @@
 import { GlobalStyles } from '../styles/Global';
-import React from 'react'
-import { View, Text, Button } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
+import ReviewBox from './ReviewBox';
 
 export default function Home({ navigation }) {
 
-    const ToDetails = () => {
-        navigation.push ("ReviewDetails");
-    }
+    const [reviews, setReviews] = useState([
+        { title: "Review 1", rating: '5/10', body: "First review body", key: 1 },
+        { title: "Review 2", rating: '6/10', body: "Second review body", key: 2 },
+        { title: "Review 3", rating: '7/10', body: "Third review body", key: 3 },
+        { title: "Review 4", rating: '8/10', body: "Fourth review body", key: 4 },
+    ])
 
     return (
         <View style={GlobalStyles.container}>
-            <Text style={GlobalStyles.headerText}>Home</Text>
-            <Text style={GlobalStyles.text}>Paragraph text</Text>
-            <Button title="Go to details" onPress={() => {navigation.push("ReviewDetails")}} />
+            <FlatList data={reviews} keyExtractor={item => item.key} renderItem={({ item }) => (
+                <ReviewBox item={item} navigation={navigation} key={item.key}/>
+            )} />
         </View>
     )
 }

@@ -1,5 +1,4 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
 import Home from '../screens/Home';
 import ReviewDetails from '../screens/ReviewDetails';
 import ReviewBox from '../screens/ReviewBox';
@@ -8,7 +7,7 @@ const screens = {
     Home: {
         screen: Home,
         navigationOptions: {
-            title: 'Home'   
+            title: 'Home'   ,
         }
     },
     ReviewDetails: {
@@ -19,5 +18,12 @@ const screens = {
     },
 }
 
-const HomeStack = createStackNavigator(screens);
-export default createAppContainer(HomeStack);
+const HomeStack = createStackNavigator(screens, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#f4511e',
+            headerTintColor: '#444',
+        }
+    }
+});
+export default HomeStack;

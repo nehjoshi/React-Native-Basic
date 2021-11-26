@@ -1,22 +1,28 @@
 import { useFonts } from 'expo-font';
-import { StatusBar } from 'expo-status-bar';
-import Navigator from './routes/HomeStack';
-import React, { useState, useEffect } from 'react';
+import  React from 'react';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from "./screens/Home";
+import About from "./screens/About";
 
 export default function App() {
 
+  const Drawer = createDrawerNavigator();
   const [loaded] = useFonts({
     Lato: require("./assets/fonts/Lato-Regular.ttf"),
     LatoBold: require("./assets/fonts/Lato-Bold.ttf"),
   });
 
-  if (!loaded){
-      return null;
+  if (!loaded) {
+    return null;
   }
   return (
-    <>
-    <Navigator />
-    </>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="About" component={About} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 

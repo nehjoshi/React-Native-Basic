@@ -1,9 +1,21 @@
 import { useFonts } from 'expo-font';
-import  React from 'react';
+import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from "./screens/Home";
+import Main from "./screens/Main";
 import About from "./screens/About";
+import ReviewDetails from './screens/ReviewDetails';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function Home() {
+  const Stack = createNativeStackNavigator();
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={Main} />
+      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
 
